@@ -14,6 +14,7 @@ let app = new Vue({
         addedName: '',
         addedComment: '',
         comments: {},
+        ratings: {},
     },
     created() {
       this.xkcd();
@@ -28,11 +29,13 @@ let app = new Vue({
                 } else {
                     url += this.number;
                 }
+                this.loading = false;
                 const response = await axios.get(url);
                 this.current = response.data;
-                this.loading = false;
+                // this.loading = false;
                 this.number = response.data.num;
             } catch (error) {
+                console.log(error);
                 this.number = this.max;
             }
         },
@@ -101,10 +104,15 @@ let app = new Vue({
             return month[this.current.month - 1];
         },
         averageRating() {
+            // console.log("Calculating avg rating...");
             if(!(this.number in this.ratings))
               return 0;
             var averageRating =  this.ratings[this.number].sum / this.ratings[this.number].total;
             return averageRating;
+        },
+        testThingy() {
+            console.log("Testing...")
+            return "testing";
         },
     },
     watch: {
