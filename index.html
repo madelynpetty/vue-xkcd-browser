@@ -34,13 +34,13 @@
       <p>{{current.alt}}</p>
       <p><i>#{{current.num}}, drawn on {{current.day}} {{month}} {{current.year}}</i></p>
       <h3>Add a Comment</h3>
+      <star-rating @rating-selected ="setRating" v-bind:increment="0.5" v-bind:star-size="40" active-color="#ff0000" v-bind:show-rating="false"></star-rating>
       <form v-on:submit.prevent="addComment">
         <input v-model="addedName" placeholder="Name"></p>
         <textarea v-model="addedComment"></textarea>
         <br />
         <button type="submit">Comment</button>
       </form>
-      <star-rating @rating-selected ="setRating" v-bind:increment="0.5" v-bind:star-size="40" active-color="#ff0000" v-bind:show-rating="false"></star-rating>
       <p>Average Rating: {{ averageRating }}</p>
       <h3>Comments</h3>
       <div v-for="comment in comments[number]">
@@ -60,8 +60,8 @@
   <script src="https://unpkg.com/vue-star-rating@1.7.0/dist/VueStarRating.umd.min.js" ></script>  
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="script.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
